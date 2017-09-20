@@ -1,4 +1,5 @@
 l = 0;
+g = l-12;
 
 (
 ~chords = Pbind(
@@ -18,8 +19,18 @@ l = 0;
 	//each chord plays eithr a quarter note, half note, or whole note
 );
 
-x = Ptpar([0, ~chords, 0, ~melody]).play
+
+~basstones = Pbind(
+        \note, Pseq([[g], [g+2], [g+4],[g+5],[g+7],[g+9,],[g+11],[g+12]], inf),
+	// repeats bass tones
+	\dur, 1
+	//each chord plays for one second
+);
+
+x = Ptpar([0, ~chords, 0, ~melody, 0, ~basstones]).play
 //makes so the events occur at the same time, with the 0's representing any delay.
 )
 
-x.stop;  
+x.stop;
+
+
